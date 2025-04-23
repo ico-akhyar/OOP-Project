@@ -20,6 +20,10 @@ CMAKE_ADDR2LINE:FILEPATH=C:/mingw64/bin/addr2line.exe
 //Path to a program.
 CMAKE_AR:FILEPATH=C:/mingw64/bin/ar.exe
 
+//For backwards compatibility, what version of CMake commands and
+// syntax should this version of CMake try to support.
+CMAKE_BACKWARDS_COMPATIBILITY:STRING=2.4
+
 //Choose the type of build, options are: None Debug Release RelWithDebInfo
 // MinSizeRel ...
 CMAKE_BUILD_TYPE:STRING=Debug
@@ -27,8 +31,8 @@ CMAKE_BUILD_TYPE:STRING=Debug
 //Enable colored diagnostics throughout.
 CMAKE_COLOR_DIAGNOSTICS:BOOL=ON
 
-//CXX compiler
-CMAKE_CXX_COMPILER:STRING=C:/mingw64/bin/g++.exe
+//No help, variable specified on the command line.
+CMAKE_CXX_COMPILER:UNINITIALIZED=C:/mingw64/bin/g++.exe
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -56,8 +60,8 @@ CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 //Libraries linked by default with all C++ applications.
 CMAKE_CXX_STANDARD_LIBRARIES:STRING=-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
 
-//C compiler
-CMAKE_C_COMPILER:STRING=C:/mingw64/bin/gcc.exe
+//No help, variable specified on the command line.
+CMAKE_C_COMPILER:UNINITIALIZED=C:/mingw64/bin/gcc.exe
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -103,9 +107,6 @@ CMAKE_EXE_LINKER_FLAGS_RELEASE:STRING=
 //Flags used by the linker during RELWITHDEBINFO builds.
 CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
-//Enable/Disable output of compile commands during generation.
-CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=
-
 //Value Computed by CMake.
 CMAKE_FIND_PACKAGE_REDIRECTS_DIR:STATIC=C:/Users/akhya/Documents/GitHub/OOP-Project/Combined Program/cmake-build-debug/CMakeFiles/pkgRedirects
 
@@ -118,8 +119,8 @@ CMAKE_INSTALL_PREFIX:PATH=C:/Program Files (x86)/untitled
 //Path to a program.
 CMAKE_LINKER:FILEPATH=C:/mingw64/bin/ld.exe
 
-//make program
-CMAKE_MAKE_PROGRAM:FILEPATH=E:/CLion/CLion 2024.3/bin/ninja/win/x64/ninja.exe
+//Path to a program.
+CMAKE_MAKE_PROGRAM:FILEPATH=C:/mingw64/bin/mingw32-make.exe
 
 //Flags used by the linker during the creation of modules during
 // all build types.
@@ -242,6 +243,36 @@ CMAKE_TAPI:FILEPATH=CMAKE_TAPI-NOTFOUND
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//Single output directory for building all executables.
+EXECUTABLE_OUTPUT_PATH:PATH=
+
+//Single output directory for building all libraries.
+LIBRARY_OUTPUT_PATH:PATH=
+
+//Arguments to supply to pkg-config
+PKG_CONFIG_ARGN:STRING=
+
+//pkg-config executable
+PKG_CONFIG_EXECUTABLE:FILEPATH=PKG_CONFIG_EXECUTABLE-NOTFOUND
+
+//Value Computed by CMake
+Project_BINARY_DIR:STATIC=C:/Users/akhya/Documents/GitHub/OOP-Project/Combined Program/cmake-build-debug
+
+//Value Computed by CMake
+Project_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+Project_SOURCE_DIR:STATIC=C:/Users/akhya/Documents/GitHub/OOP-Project/Combined Program
+
+//Path to a library.
+SQLITE3_LIBRARY:FILEPATH=SQLITE3_LIBRARY-NOTFOUND
+
+//Path to a file.
+SQLite3_INCLUDE_DIR:PATH=SQLite3_INCLUDE_DIR-NOTFOUND
+
+//Path to a library.
+SQLite3_LIBRARY:FILEPATH=SQLite3_LIBRARY-NOTFOUND
+
 //Value Computed by CMake
 untitled_BINARY_DIR:STATIC=C:/Users/akhya/Documents/GitHub/OOP-Project/Combined Program/cmake-build-debug
 
@@ -324,12 +355,10 @@ CMAKE_EXE_LINKER_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
 CMAKE_EXE_LINKER_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO
 CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CMAKE_EXPORT_COMPILE_COMMANDS
-CMAKE_EXPORT_COMPILE_COMMANDS-ADVANCED:INTERNAL=1
 //Name of external makefile project generator.
 CMAKE_EXTRA_GENERATOR:INTERNAL=
 //Name of generator.
-CMAKE_GENERATOR:INTERNAL=Ninja
+CMAKE_GENERATOR:INTERNAL=MinGW Makefiles
 //Generator instance identifier.
 CMAKE_GENERATOR_INSTANCE:INTERNAL=
 //Name of generator platform.
@@ -341,6 +370,8 @@ CMAKE_GENERATOR_TOOLSET:INTERNAL=
 CMAKE_HOME_DIRECTORY:INTERNAL=C:/Users/akhya/Documents/GitHub/OOP-Project/Combined Program
 //ADVANCED property for variable: CMAKE_LINKER
 CMAKE_LINKER-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_MAKE_PROGRAM
+CMAKE_MAKE_PROGRAM-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MODULE_LINKER_FLAGS
 CMAKE_MODULE_LINKER_FLAGS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MODULE_LINKER_FLAGS_DEBUG
@@ -410,6 +441,36 @@ CMAKE_STRIP-ADVANCED:INTERNAL=1
 CMAKE_TAPI-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+PC_SQLite3_CFLAGS:INTERNAL=
+PC_SQLite3_CFLAGS_I:INTERNAL=
+PC_SQLite3_CFLAGS_OTHER:INTERNAL=
+PC_SQLite3_FOUND:INTERNAL=
+PC_SQLite3_INCLUDEDIR:INTERNAL=
+PC_SQLite3_LIBDIR:INTERNAL=
+PC_SQLite3_LIBS:INTERNAL=
+PC_SQLite3_LIBS_L:INTERNAL=
+PC_SQLite3_LIBS_OTHER:INTERNAL=
+PC_SQLite3_LIBS_PATHS:INTERNAL=
+PC_SQLite3_MODULE_NAME:INTERNAL=
+PC_SQLite3_PREFIX:INTERNAL=
+PC_SQLite3_STATIC_CFLAGS:INTERNAL=
+PC_SQLite3_STATIC_CFLAGS_I:INTERNAL=
+PC_SQLite3_STATIC_CFLAGS_OTHER:INTERNAL=
+PC_SQLite3_STATIC_LIBDIR:INTERNAL=
+PC_SQLite3_STATIC_LIBS:INTERNAL=
+PC_SQLite3_STATIC_LIBS_L:INTERNAL=
+PC_SQLite3_STATIC_LIBS_OTHER:INTERNAL=
+PC_SQLite3_STATIC_LIBS_PATHS:INTERNAL=
+PC_SQLite3_VERSION:INTERNAL=
+//ADVANCED property for variable: PKG_CONFIG_ARGN
+PKG_CONFIG_ARGN-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
+PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: SQLite3_INCLUDE_DIR
+SQLite3_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: SQLite3_LIBRARY
+SQLite3_LIBRARY-ADVANCED:INTERNAL=1
 //linker supports push/pop state
 _CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED:INTERNAL=TRUE
+__pkg_config_checked_PC_SQLite3:INTERNAL=1
 
