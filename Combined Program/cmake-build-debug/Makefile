@@ -116,48 +116,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named untitled
+# Target rules for targets named ElectionSystem
 
 # Build rule for target.
-untitled: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 untitled
-.PHONY : untitled
+ElectionSystem: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ElectionSystem
+.PHONY : ElectionSystem
 
 # fast build rule for target.
-untitled/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/build
-.PHONY : untitled/fast
-
-db.obj: db.cpp.obj
-.PHONY : db.obj
-
-# target to build an object file
-db.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/db.cpp.obj
-.PHONY : db.cpp.obj
-
-db.i: db.cpp.i
-.PHONY : db.i
-
-# target to preprocess a source file
-db.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/db.cpp.i
-.PHONY : db.cpp.i
-
-db.s: db.cpp.s
-.PHONY : db.s
-
-# target to generate assembly for a file
-db.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/db.cpp.s
-.PHONY : db.cpp.s
+ElectionSystem/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ElectionSystem.dir\build.make CMakeFiles/ElectionSystem.dir/build
+.PHONY : ElectionSystem/fast
 
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
 # target to build an object file
 main.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/main.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ElectionSystem.dir\build.make CMakeFiles/ElectionSystem.dir/main.cpp.obj
 .PHONY : main.cpp.obj
 
 main.i: main.cpp.i
@@ -165,7 +141,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ElectionSystem.dir\build.make CMakeFiles/ElectionSystem.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -173,7 +149,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ElectionSystem.dir\build.make CMakeFiles/ElectionSystem.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -184,10 +160,7 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... untitled
-	@echo ... db.obj
-	@echo ... db.i
-	@echo ... db.s
+	@echo ... ElectionSystem
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

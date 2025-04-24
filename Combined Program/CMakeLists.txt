@@ -1,16 +1,6 @@
-cmake_minimum_required(VERSION 3.30)
-project(untitled)
+cmake_minimum_required(VERSION 3.10)
+project(ElectionSystem)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 
-# Add your source files
-add_executable(untitled
-        main.cpp
-        db.cpp
-)
-
-# Include current directory for headers
-include_directories(${CMAKE_SOURCE_DIR})
-
-# Link sqlite3 static library
-target_link_libraries(untitled PRIVATE ${CMAKE_SOURCE_DIR}/libsqlite3.a)
+add_executable(ElectionSystem main.cpp)
