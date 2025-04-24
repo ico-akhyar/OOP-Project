@@ -1,6 +1,7 @@
 #include <iostream>
 #include "sstream"
 #include "fstream"
+#include "windows.h"
 using namespace std;
 
 static int auto_id=0;
@@ -307,8 +308,70 @@ bool admin_login() {
     }
 }
 
+void voter_menu()
+{
+
+}
 
 
+void voter_login() {
+    bool flag = true;
+    int cnt = 3;
+    int count = 0;
+    system("cls");
+    string line;
+    string user;
+    string pass;
+    string s_user;
+    string s_pass;
+    do
+    {
+        cout<<endl;
+        cout << "\t||====+---> Enter Your Login Info  <---+====||" << endl;
+        cout << "\t--> Username(0 to go back): ";
+        if (count == 0) {
+            cin.ignore();
+            count++;
+        }
+        getline(cin, user);
+        cout << "\t--> Password(0 to go back): ";
+        getline(cin, pass);
+        ifstream Data("login_info.txt");
+        if (Data.is_open()) {
+            while (getline(Data, line)) {
+                s_user = line;
+                if (getline(Data, line)) {
+                    s_pass = line;
+                    if (user == s_user && pass == s_pass) {
+                        flag = true;
+                        cout << "\t:::: Login Successful! ::::" << endl;
+                        cout << "\t-_-_-_-_-_-_-_-_-_-_-_-_-_-" << endl;
+                        Sleep(1000);
+                        voter_menu();
+                        flag = false;
+                        break;
+                    } else if (user == "0" && pass == "0") {
+                        flag = false;
+
+                    }
+                }
+            }
+            if (user=="0" && pass=="0")
+                break;
+            if (user != s_user || pass != s_pass) {
+                cout << "\t||====+===>           ERROR         <===+====||" << endl;
+                cout << "\t||--->   Incorrect Username Or Password  <---||" << endl;
+                cout << "\t||====+===>     Please Try Again    <===+====||" << endl;
+                cout << "\t||====+===>  Remaining Attempts " << cnt << "   <===+====||" << endl;
+                cnt--;
+                //Sleep(2000);
+                flag = true;
+
+            }
+
+        }
+    }while(flag && cnt>0);
+}
 
 
 int main() {
@@ -319,10 +382,10 @@ int main() {
     cin >> opt;
     switch (opt) {
         case 1:
-            admin_menu();
+            admin_login();
             break;
         case 2:
-            voter_menu();
+            voter_login();
             break;
         case 3:
             candidate_menu();
