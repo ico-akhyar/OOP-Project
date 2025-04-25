@@ -375,7 +375,7 @@ void voter_login() {
 
 
 int main() {
-    cout << "Election Commision" << endl;
+    cout << "Election Commission" << endl;
     cout << "Select-->\n";
     cout << "1) Admin Menu\n2) Voter Menu\n3) Candidate Menu\n4) Exit\n";
     int opt;
