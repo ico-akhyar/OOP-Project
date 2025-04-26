@@ -5,6 +5,7 @@
 using namespace std;
 
 static int auto_id=0;
+static int voterCount=0;
 
 class Person {
 protected:
@@ -26,15 +27,17 @@ public:
     }
 };
 
+
 class Voter : public Person {
 private:
-    string pass;
+    string password;
     string cnic;
     string na_cons;
     string pa_cons;
 public:
-    Voter(int id, string name, string gender, int age, string address, string cnic,string na_cons,string pa_cons)
-            : Person(id, name, gender, age, address), cnic(cnic),na_cons(na_cons),pa_cons(pa_cons) {}
+    Voter(){}
+    Voter(int id, string name, string gender, int age, string address,string pass, string cnic,string na_cons,string pa_cons)
+            : Person(id, name, gender, age, address), cnic(cnic),password(pass) , na_cons(na_cons),pa_cons(pa_cons) {}
 
     void display() const override {
         cout << "Voter -> ";
@@ -42,45 +45,20 @@ public:
         cout << "CNIC: " << cnic << endl;
     }
 
-    static bool voter_login()
-    {
-        string cnic, password;
+    static bool voter_login(Voter voters[]) {
+        string cnic_input, password_input;
         cout << "Enter your CNIC: ";
-        cin >> cnic;
+        cin >> cnic_input;
         cout << "Enter your password: ";
-        cin >> password;
+        cin >> password_input;
 
-        ifstream file("voters.csv");
-
-        if (!file.is_open()) {
-            cout << "Error opening the file!" << endl;
-            return false;
-        }
-
-        string line;
-        while (getline(file, line)) {
-            stringstream ss(line);
-            string id, name, gender, age, address, file_cnic, file_password, na_const, pa_const;
-
-            getline(ss, id, ',');
-            getline(ss, name, ',');
-            getline(ss, gender, ',');
-            getline(ss, age, ',');
-            getline(ss, address, ',');
-            getline(ss, file_cnic, ',');
-            getline(ss, file_password, ',');
-            getline(ss, na_const, ',');
-            getline(ss, pa_const, ',');
-
-            if (cnic == file_cnic && password == file_password) {
-                cout << "Login successful!" << endl;
-                file.close();
+        for (int i = 0; i < voterCount; i++) {
+            if (voters[i].cnic == cnic_input && voters[i].password == password_input) {
+                cout << "Login successful! Welcome " << voters[i].name << endl;
                 return true;
             }
         }
-
         cout << "Invalid CNIC or password!" << endl;
-        file.close();
         return false;
     }
 };
@@ -90,13 +68,14 @@ private:
     int party_id;
     int election_id;
     int votes;
+    int cons;
 
 public:
     Candidate() {}
     Candidate(int id, string name, string gender, int age, string address,
-              int party_id, int election_id, int votes = 0)
+              int party_id, int election_id, int votes = 0,int choice=0)
             : Person(id, name, gender, age, address),
-              party_id(party_id), election_id(election_id), votes(votes) {}
+              party_id(party_id), election_id(election_id), votes(votes),cons(choice) {}
 
     void display() const override {
         cout << "Candidate -> ";
@@ -185,10 +164,12 @@ private:
     string pass;
 public:
     Admin(string a, string b)
-            : user(a), pass(b) {}
+            : user(a), pass(b){}
+
 
     bool is_valid(const string &pass) {
         if (pass.length() < 8) return false;
+
 
         bool hasAlpha = false, hasDigit = false, hasSpecial = false;
         string specialChars = "!@#$&";
@@ -361,7 +342,7 @@ public:
         }
 
 
-        Voter V(++auto_id, name, gender, age, address, cnic, na_cons, pa_cons);
+        Voter V(++auto_id, name, gender, age, address, cnic, pass, na_cons, pa_cons);
 
         ofstream can("voters.csv", ios::app);
         if (can.is_open()) {
@@ -472,13 +453,13 @@ public:
         }
 
         else {
-            Candidate X(++auto_id, name, gender, age, address, party_id, votes);
+            Candidate X(++auto_id, name, gender, age, address, party_id, votes,choice);
             E.constituencies[choice - 1].addCandidate(X);
 
             ofstream can("candidates.csv", ios::app);
             if (can.is_open()) {
                 can << auto_id << "," << name << "," << gender << "," << age << "," << address << "," << party_id << ","
-                    << votes << "\n";
+                    << choice << "\n";
                 can.close();
                 cout << "New candidate 'X' added" << endl;
             } else {
@@ -620,6 +601,28 @@ void voter_login() {
     } while (flag && cnt > 0);
 }
 
+void load_voters(Voter voters[]) {
+    ifstream file("voters.csv");
+    string line;
+    while (getline(file, line)) {
+        stringstream ss(line);
+        string id, name, gender, age, address, cnic, password, na_const, pa_const;
+
+        getline(ss, id, ',');
+        getline(ss, name, ',');
+        getline(ss, gender, ',');
+        getline(ss, age, ',');
+        getline(ss, address, ',');
+        getline(ss, cnic, ',');
+        getline(ss, password, ',');
+        getline(ss, na_const, ',');
+        getline(ss, pa_const, ',');
+
+        voters[voterCount++] = Voter(stoi(id), name, gender, stoi(age), address, cnic, password, na_const, pa_const);
+    }
+    file.close();
+}
+
 
 int main() {
     cout << "Election Commision" << endl;
@@ -632,8 +635,12 @@ int main() {
             Admin::admin_login();
             break;
         case 2:
-            voter_login();
+        {
+            Voter voters[100];
+            load_voters(voters);
+            Voter::voter_login(voters);
             break;
+        }
         case 3:
             cout << "Exiting!" << endl;
             break;
