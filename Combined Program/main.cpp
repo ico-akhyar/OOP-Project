@@ -41,6 +41,48 @@ public:
         Person::display();
         cout << "CNIC: " << cnic << endl;
     }
+
+    static bool voter_login()
+    {
+        string cnic, password;
+        cout << "Enter your CNIC: ";
+        cin >> cnic;
+        cout << "Enter your password: ";
+        cin >> password;
+
+        ifstream file("voters.csv");
+
+        if (!file.is_open()) {
+            cout << "Error opening the file!" << endl;
+            return false;
+        }
+
+        string line;
+        while (getline(file, line)) {
+            stringstream ss(line);
+            string id, name, gender, age, address, file_cnic, file_password, na_const, pa_const;
+
+            getline(ss, id, ',');
+            getline(ss, name, ',');
+            getline(ss, gender, ',');
+            getline(ss, age, ',');
+            getline(ss, address, ',');
+            getline(ss, file_cnic, ',');
+            getline(ss, file_password, ',');
+            getline(ss, na_const, ',');
+            getline(ss, pa_const, ',');
+
+            if (cnic == file_cnic && password == file_password) {
+                cout << "Login successful!" << endl;
+                file.close();
+                return true;
+            }
+        }
+
+        cout << "Invalid CNIC or password!" << endl;
+        file.close();
+        return false;
+    }
 };
 
 class Candidate : public Person {
@@ -232,6 +274,16 @@ public:
         }
 
         cin.ignore();
+        while (true) {
+            cout << "Enter gender (Male/Female/Other): ";
+            getline(cin, gender);
+            if (gender == "Male" || gender == "Female" || gender == "Other") break;
+            cout << "Invalid gender! Type exactly: Male, Female, or Other\n";
+        }
+
+        cout << "Enter address: ";
+        getline(cin, address);
+
         cout << "Enter CNIC (13 digits, no dashes): ";
         getline(cin, cnic);
 
@@ -309,11 +361,11 @@ public:
         }
 
 
-        Voter(++auto_id, name, gender, age, address, cnic, na_cons, pa_cons);
+        Voter V(++auto_id, name, gender, age, address, cnic, na_cons, pa_cons);
 
         ofstream can("voters.csv", ios::app);
         if (can.is_open()) {
-            can << auto_id << "," << name << "," << gender << "," << age << "," << address << "," << cnic << "\n";
+            can << auto_id << "," << name << "," << gender << "," << age << "," << address << "," << cnic << "," << p1 << "," << na_cons << "," << pa_cons << "\n";
             can.close();
         } else {
             cout << "Failed to open voters.csv file!" << endl;
