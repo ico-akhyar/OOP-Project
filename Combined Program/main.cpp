@@ -52,6 +52,7 @@ public:
         cout << "Enter your password: ";
         cin >> password_input;
 
+
         for (int i = 0; i < voterCount; i++) {
             if (voters[i].cnic == cnic_input && voters[i].password == password_input) {
                 cout << "Login successful! Welcome " << voters[i].name << endl;
@@ -537,73 +538,10 @@ public:
 };
 
 
-void voter_menu() {
-
-}
-
-
-void voter_login() {
-    bool flag = true;
-    int cnt = 3;
-    int count = 0;
-    system("cls");
-    string line, user, pass, s_user, s_pass, cnic;
-
-    do {
-        cout << endl;
-        cout << "\t||====+---> Enter Your Login Info  <---+====||" << endl;
-        cout << "\t--> Username(0 to go back): ";
-        if (count == 0) {
-            cin.ignore();
-            count++;
-        }
-        getline(cin, user);
-        cout << "\t--> Password(0 to go back): ";
-        getline(cin, pass);
-
-        if (user == "0" && pass == "0") {
-            flag = false;
-            break;
-        }
-
-        ifstream Data("voters_login.csv");
-        bool loginSuccess = false;
-
-        if (Data.is_open()) {
-            while (getline(Data, line)) {
-                stringstream ss(line);
-                getline(ss, s_user, ',');
-                getline(ss, s_pass, ',');
-                getline(ss, cnic, ','); // optional use
-
-                if (user == s_user && pass == s_pass) {
-                    loginSuccess = true;
-                    cout << "\t:::: Login Successful! ::::" << endl;
-                    cout << "\t-_-_-_-_-_-_-_-_-_-_-_-_-_-" << endl;
-                    Sleep(1000);
-                    voter_menu();
-                    flag = false;
-                    break;
-                }
-            }
-            Data.close();
-        }
-
-        if (!loginSuccess) {
-            cout << "\t||====+===>           ERROR         <===+====||" << endl;
-            cout << "\t||--->   Incorrect Username Or Password  <---||" << endl;
-            cout << "\t||====+===>     Please Try Again    <===+====||" << endl;
-            cout << "\t||====+===>  Remaining Attempts " << cnt << "   <===+====||" << endl;
-            cnt--;
-            flag = true;
-        }
-
-    } while (flag && cnt > 0);
-}
-
 void load_voters(Voter voters[]) {
     ifstream file("voters.csv");
     string line;
+    getline(file, line);
     while (getline(file, line)) {
         stringstream ss(line);
         string id, name, gender, age, address, cnic, password, na_const, pa_const;
@@ -618,8 +556,10 @@ void load_voters(Voter voters[]) {
         getline(ss, na_const, ',');
         getline(ss, pa_const, ',');
 
-        voters[voterCount++] = Voter(stoi(id), name, gender, stoi(age), address, cnic, password, na_const, pa_const);
+        voters[voterCount++] = Voter(stoi(id), name, gender, stoi(age), address, password, cnic, na_const, pa_const);
+        voterCount++;
     }
+
     file.close();
 }
 
