@@ -1,2 +1,3 @@
-id,name,gender,age,address,cnic,password,na_const,pa_const
-1,akhyar,Male,19,pakistan,3120180969683,Akhyar@123,NA-25,PP-32
+id,name,gender,age,address,cnic,password,na_const,pa_const,has_voted_na,has_voted_pa
+1,akhyar,Male,19,pakistan,3120180969683,Akhyar@123,NA-25,PP-32,0,0
+2,Akhyar,Male,19,Kala Shah Kaku,3120180000083,akHyar@26,NA-26,PP-25,0,0
