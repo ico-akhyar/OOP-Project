@@ -1,8 +1,1 @@
-1,SEN,Male,18,Karachi,Pakistan,12,26,01,Anas,Male,19,Uet ksk,1,26
-2,Sami,Other,25,Uet new campus,2,25
-1,Abc,Male,19,Uet new campus,1,26
-2,def,Male,22,Uet main,2,26
-1,bc,Male,18,Uet ksk,1,26
-2,Anas,Male,19,Uet main campus,2,26
-1,Abc,Male,22,Uet ksk,1,26
-2,en,Male,18,Uet new campus,2,26
+id,name,gender,age,address,party_id,election,id,votes,constituency
